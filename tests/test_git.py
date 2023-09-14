@@ -152,8 +152,8 @@ def test_get_commits_without_breakline_in_each_commit(mocker: MockFixture):
 
 
 def test_get_commits_with_signature():
-    config_file = ".git/config"
-    config_backup = ".git/config.bak"
+    config_file = f"{git.find_git_project_root()}/.git/config"
+    config_backup = f"{git.find_git_project_root()}/.git/config.bak"
     shutil.copy(config_file, config_backup)
 
     try:

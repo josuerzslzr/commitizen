@@ -259,6 +259,7 @@ def _get_log_as_str_list(start: str | None, end: str, args: str) -> list[str]:
         command = f"{git_log_cmd} {start}..{end}"
     else:
         command = f"{git_log_cmd} {end}"
+    command = f"{command} ."
     c = cmd.run(command)
     if c.return_code != 0:
         raise GitCommandError(c.err)

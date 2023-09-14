@@ -45,6 +45,7 @@ from commitizen.version_schemes import (
     InvalidVersion,
     Pep440,
 )
+from string import Template
 
 if TYPE_CHECKING:
     from commitizen.version_schemes import VersionScheme
@@ -74,16 +75,20 @@ def tag_included_in_changelog(
     return True
 
 
-def get_version_tags(scheme: Type[BaseVersion], tags: list[GitTag]) -> list[GitTag]:
+def get_version_tags(scheme: Type[BaseVersion], tags: list[GitTag], tag_format: str="") -> list[GitTag]:
     valid_tags: list[GitTag] = []
+    t = Template(tag_format)
+    tag_prefix:str = t.safe_substitute(
+        version="", major="", minor="", patch="", prerelease=""
+    )
     for tag in tags:
         try:
-            scheme(tag.name)
+            if tag_prefix in tag.name:
+                #scheme(tag.name, fixed)
+                valid_tags.append(tag)
         except InvalidVersion:
             out.warn(f"InvalidVersion {tag}")
-        else:
-            valid_tags.append(tag)
-
+        
     return valid_tags
 
 

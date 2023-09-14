@@ -1,5 +1,5 @@
 [tool.commitizen]
-version = "3.8.2"
+version = "3.8.2+custom0.0.5"
 tag_format = "v$version"
 version_files = [
   "pyproject.toml:version",
@@ -9,9 +9,9 @@ version_files = [
 
 [tool.poetry]
 name = "commitizen"
-version = "3.8.2"
+version = "3.8.2+custom0.0.5"
 description = "Python commitizen client tool"
-authors = ["Santiago Fraire <santiwilly@gmail.com>"]
+authors = ["Santiago Fraire <santiwilly@gmail.com>","Josue Salazar <josue.ruiz.s@gmail.com>"]
 license = "MIT"
 keywords = ["commitizen", "conventional", "commits", "git"]
 readme = "docs/README.md"
