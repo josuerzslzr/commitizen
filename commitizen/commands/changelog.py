@@ -138,7 +138,7 @@ class Changelog:
         # Don't continue if no `file_name` specified.
         assert self.file_name
 
-        tags = changelog.get_version_tags(self.scheme, git.get_tags()) or []
+        tags = changelog.get_version_tags(self.scheme, git.get_tags(), self.tag_format) or []
 
         end_rev = ""
         if self.incremental:

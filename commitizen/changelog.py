@@ -82,10 +82,12 @@ def get_version_tags(scheme: Type[BaseVersion], tags: list[GitTag], tag_format: 
         version="", major="", minor="", patch="", prerelease=""
     )
     for tag in tags:
-        try:
-            if tag_prefix in tag.name:
+        try: 
+            if tag_format!="" and tag_prefix in tag.name:
                 #scheme(tag.name, fixed)
                 valid_tags.append(tag)
+            else:
+                out.warn(f"Ignoring tag: {tag} - does not comply with tag_format: {tag_format}")
         except InvalidVersion:
             out.warn(f"InvalidVersion {tag}")
         
